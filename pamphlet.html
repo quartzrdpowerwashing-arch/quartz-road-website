@@ -319,33 +319,29 @@
     }
     .ba-photo {
       flex: 1;
-      border: 2px dashed #E2E8F0;
-      border-top: none;
       border-radius: 0 0 6px 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #F8FAFC;
       min-height: 1.6in;
-      padding: 0.1in;
-      text-align: center;
+      overflow: hidden;
+      position: relative;
     }
-    .ba-photo.after-box {
-      border-color: #BAE6FD;
-      background: #F0F9FF;
+    .ba-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
-    .ba-photo-icon {
-      font-size: 22pt;
-      margin-bottom: 0.06in;
-      opacity: 0.3;
-    }
-    .ba-photo-text {
-      font-size: 7pt;
-      color: #94A3B8;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .ba-photo img.rotated {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%) rotate(90deg);
+      transform-origin: center;
+      min-width: 150%;
+      min-height: 150%;
     }
     .before-after-2 {
       display: flex;
@@ -609,15 +605,13 @@
         <div class="ba-box">
           <div class="ba-label before">Before</div>
           <div class="ba-photo">
-            <div class="ba-photo-icon">📷</div>
-            <div class="ba-photo-text">Add your<br/>before photo</div>
+            <img src="assets/before-1.jpg" alt="Before" />
           </div>
         </div>
         <div class="ba-box">
           <div class="ba-label after">After</div>
-          <div class="ba-photo after-box">
-            <div class="ba-photo-icon">✨</div>
-            <div class="ba-photo-text">Add your<br/>after photo</div>
+          <div class="ba-photo">
+            <img src="assets/after-1.jpg" alt="After" />
           </div>
         </div>
       </div>
@@ -626,15 +620,13 @@
         <div class="ba-box">
           <div class="ba-label before">Before</div>
           <div class="ba-photo">
-            <div class="ba-photo-icon">📷</div>
-            <div class="ba-photo-text">Add your<br/>before photo</div>
+            <img src="assets/before-2.jpg" alt="Before" />
           </div>
         </div>
         <div class="ba-box">
           <div class="ba-label after">After</div>
-          <div class="ba-photo after-box">
-            <div class="ba-photo-icon">✨</div>
-            <div class="ba-photo-text">Add your<br/>after photo</div>
+          <div class="ba-photo">
+            <img src="assets/after-2.jpg" alt="After" />
           </div>
         </div>
       </div>
