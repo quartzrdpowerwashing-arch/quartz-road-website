@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quartz RD Pro Wash — Pamphlet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #d0d0d0;
+    }
+
+    /* ---- PRINT INSTRUCTIONS (screen only) ---- */
+    .instructions {
+      font-family: 'Montserrat', sans-serif;
+      background: #1e293b;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+    .instructions strong { color: #38BDF8; }
+    @media print { .instructions { display: none; } }
+
+    /* ---- SHEET LAYOUT ---- */
+    @page { size: letter landscape; margin: 0; }
+
+    .sheet {
+      width: 11in;
+      height: 8.5in;
+      display: flex;
+      position: relative;
+      background: white;
+      page-break-after: always;
+    }
+    .sheet:last-child { page-break-after: avoid; }
+
+    .panel {
+      width: 5.5in;
+      height: 8.5in;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* Fold guide — hidden when printing */
+    .fold-guide {
+      position: absolute;
+      left: 5.5in;
+      top: 0.25in;
+      bottom: 0.25in;
+      width: 0;
+      border-left: 1.5px dashed #aaa;
+      z-index: 20;
+      pointer-events: none;
+    }
+    @media print { .fold-guide { display: none; } }
+
+    /* ================================================
+       PANEL 1: FRONT COVER (right side of sheet 1)
+       ================================================ */
+    .front-cover {
+      background: #08090E;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5in 0.4in;
+      text-align: center;
+    }
+    .front-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(56,189,248,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(96,165,250,0.06) 0%, transparent 60%);
+    }
+    .front-cover__logo {
+      width: 3.8in;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 0 20px rgba(56,189,248,0.3));
+      margin-bottom: 0.25in;
+    }
+    .front-cover__service {
+      position: relative;
+      z-index: 2;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.15in;
+    }
+    .front-cover__tagline {
+      position: relative;
+      z-index: 2;
+      font-size: 20pt;
+      font-weight: 900;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 0.12in;
+    }
+    .front-cover__tagline em {
+      font-style: italic;
+      background: linear-gradient(90deg, #38BDF8, #A5F3FC);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .front-cover__area {
+      position: relative;
+      z-index: 2;
+      font-size: 8pt;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      margin-top: 0.1in;
+    }
+    .front-cover__cta {
+      position: relative;
+      z-index: 2;
+      margin-top: 0.25in;
+      background: linear-gradient(135deg, #38BDF8, #60A5FA);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 9pt;
+      letter-spacing: 0.06em;
+      padding: 0.1in 0.3in;
+      border-radius: 100px;
+      border: none;
+    }
+
+    /* ================================================
+       PANEL 2: BACK COVER (left side of sheet 1)
+       ================================================ */
+    .back-cover {
+      background: #F8FAFC;
+      border-right: 1px solid #E2E8F0;
+      display: flex;
+      flex-direction: column;
+      padding: 0.45in 0.4in;
+    }
+    .back-cover__logo-text {
+      font-family: 'Pacifico', cursive;
+      font-size: 26pt;
+      background: linear-gradient(90deg, #0284C7, #38BDF8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.04in;
+    }
+    .back-cover__sub {
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: #94A3B8;
+      text-transform: uppercase;
+      margin-bottom: 0.25in;
+    }
+    .back-cover__tagline {
+      font-size: 17pt;
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1.2;
+      margin-bottom: 0.2in;
+    }
+    .back-cover__tagline span {
+      color: #0284C7;
+    }
+    .back-cover__divider {
+      width: 0.5in;
+      height: 3px;
+      background: linear-gradient(90deg, #38BDF8, #A5F3FC);
+      border-radius: 2px;
+      margin-bottom: 0.25in;
+    }
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.14in;
+      margin-bottom: 0.25in;
+    }
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.1in;
+    }
+    .contact-icon {
+      width: 18pt;
+      height: 18pt;
+      background: linear-gradient(135deg, #38BDF8, #60A5FA);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8pt;
+      flex-shrink: 0;
+      color: white;
+    }
+    .contact-text {
+      font-size: 9pt;
+      color: #1E293B;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .contact-label {
+      font-size: 6.5pt;
+      color: #94A3B8;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+    }
+    .back-cover__area-box {
+      background: linear-gradient(135deg, #EFF6FF, #E0F2FE);
+      border-left: 3px solid #38BDF8;
+      padding: 0.1in 0.14in;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 0.2in;
+    }
+    .back-cover__area-label {
+      font-size: 6.5pt;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0284C7;
+      margin-bottom: 0.03in;
+    }
+    .back-cover__area-text {
+      font-size: 8.5pt;
+      color: #1E293B;
+      font-weight: 600;
+    }
+    .back-cover__free {
+      margin-top: auto;
+      background: #0F172A;
+      color: white;
+      padding: 0.12in 0.16in;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .back-cover__free p {
+      font-size: 8pt;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.04in;
+    }
+    .back-cover__free strong {
+      font-size: 11pt;
+      font-weight: 900;
+      color: #38BDF8;
+    }
+
+    /* ================================================
+       PANEL 3: INSIDE LEFT — Before & After
+       ================================================ */
+    .inside-left {
+      background: white;
+      border-right: 1px solid #F1F5F9;
+      padding: 0.4in 0.38in;
+      display: flex;
+      flex-direction: column;
+    }
+    .inside-eyebrow {
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #38BDF8;
+      margin-bottom: 0.06in;
+    }
+    .inside-title {
+      font-size: 18pt;
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1.15;
+      margin-bottom: 0.06in;
+    }
+    .inside-title span { color: #0284C7; }
+    .inside-sub {
+      font-size: 8pt;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 0.22in;
+    }
+    .before-after {
+      display: flex;
+      gap: 0.15in;
+      margin-bottom: 0.18in;
+      flex: 1;
+    }
+    .ba-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .ba-label {
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.05in 0.1in;
+      text-align: center;
+      border-radius: 4px 4px 0 0;
+    }
+    .ba-label.before {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+    .ba-label.after {
+      background: linear-gradient(90deg, #0284C7, #38BDF8);
+      color: white;
+    }
+    .ba-photo {
+      flex: 1;
+      border: 2px dashed #E2E8F0;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #F8FAFC;
+      min-height: 1.6in;
+      padding: 0.1in;
+      text-align: center;
+    }
+    .ba-photo.after-box {
+      border-color: #BAE6FD;
+      background: #F0F9FF;
+    }
+    .ba-photo-icon {
+      font-size: 22pt;
+      margin-bottom: 0.06in;
+      opacity: 0.3;
+    }
+    .ba-photo-text {
+      font-size: 7pt;
+      color: #94A3B8;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .before-after-2 {
+      display: flex;
+      gap: 0.15in;
+      flex: 1;
+    }
+    .inside-left__promise {
+      background: #0F172A;
+      border-radius: 8px;
+      padding: 0.12in 0.15in;
+      text-align: center;
+      margin-top: 0.15in;
+    }
+    .inside-left__promise p {
+      font-size: 8pt;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.04in;
+    }
+    .inside-left__promise strong {
+      font-size: 10pt;
+      font-weight: 900;
+      color: white;
+    }
+
+    /* ================================================
+       PANEL 4: INSIDE RIGHT — Services & Why Us
+       ================================================ */
+    .inside-right {
+      background: #F8FAFC;
+      padding: 0.4in 0.38in;
+      display: flex;
+      flex-direction: column;
+      gap: 0.18in;
+    }
+
+    /* Services */
+    .services-section {}
+    .section-header {
+      margin-bottom: 0.12in;
+    }
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08in;
+    }
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.08in;
+      background: white;
+      border-radius: 6px;
+      padding: 0.08in 0.1in;
+      border-left: 3px solid #38BDF8;
+    }
+    .service-item__name {
+      font-size: 8.5pt;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 0.02in;
+    }
+    .service-item__desc {
+      font-size: 7pt;
+      color: #64748B;
+      line-height: 1.4;
+    }
+
+    /* Why us */
+    .why-section {}
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.07in;
+    }
+    .why-item {
+      display: flex;
+      align-items: center;
+      gap: 0.08in;
+    }
+    .why-check {
+      width: 14pt;
+      height: 14pt;
+      background: linear-gradient(135deg, #38BDF8, #60A5FA);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7pt;
+      color: white;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .why-text {
+      font-size: 8pt;
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    /* CTA strip */
+    .cta-strip {
+      background: linear-gradient(135deg, #0284C7, #38BDF8);
+      border-radius: 8px;
+      padding: 0.14in 0.16in;
+      text-align: center;
+      margin-top: auto;
+    }
+    .cta-strip p {
+      font-size: 8pt;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.04in;
+    }
+    .cta-strip strong {
+      font-size: 14pt;
+      font-weight: 900;
+      color: white;
+      display: block;
+      letter-spacing: 0.03em;
+    }
+    .cta-strip small {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* QR code block */
+    .qr-block {
+      display: flex;
+      align-items: center;
+      gap: 0.1in;
+      margin-top: 0.12in;
+    }
+    .qr-block canvas,
+    .qr-block img {
+      width: 0.7in !important;
+      height: 0.7in !important;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .qr-label {
+      font-size: 6.5pt;
+      color: #64748B;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+    }
+    .qr-label strong {
+      display: block;
+      font-size: 7.5pt;
+      color: #0F172A;
+      margin-bottom: 0.02in;
+    }
+
+    /* Screen preview spacing */
+    @media screen {
+      body { padding: 0.3in; }
+      .sheet {
+        margin-bottom: 0.3in;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="instructions">
+    <strong>HOW TO PRINT:</strong>
+    Print this page at 100% scale (no scaling), landscape orientation, on standard letter paper.
+    &nbsp;|&nbsp; <strong>Page 1</strong> = Outside (front &amp; back covers). &nbsp;|&nbsp; <strong>Page 2</strong> = Inside.
+    &nbsp;|&nbsp; Print page 1 → flip paper → print page 2 → fold down the middle (hot dog fold). &nbsp;|&nbsp;
+    <strong>Dashed line = fold here</strong> (hidden when printing).
+    &nbsp;|&nbsp; Replace the photo placeholders with real before/after photos once you have them.
+  </div>
+
+  <!-- ============================================
+       SHEET 1: OUTSIDE (Front Cover + Back Cover)
+       ============================================ -->
+  <div class="sheet">
+    <div class="fold-guide"></div>
+
+    <!-- Back Cover (left when unfolded) -->
+    <div class="panel back-cover">
+      <div class="back-cover__logo-text">Quartz RD</div>
+      <div class="back-cover__sub">Pro Wash</div>
+
+      <div class="back-cover__tagline">
+        Your concrete,<br><span>restored.</span>
+      </div>
+      <div class="back-cover__divider"></div>
+
+      <div class="contact-block">
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <span class="contact-label">Call or Text</span>
+            (425) 686-0803
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">✉</div>
+          <div class="contact-text">
+            <span class="contact-label">Email</span>
+            quartzrdpowerwashing@gmail.com
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-text">
+            <span class="contact-label">Website</span>
+            quartz-road-website.vercel.app
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📸</div>
+          <div class="contact-text">
+            <span class="contact-label">Instagram</span>
+            @quartzrdpowerwashing
+          </div>
+        </div>
+      </div>
+
+      <div class="back-cover__area-box">
+        <div class="back-cover__area-label">Service Area</div>
+        <div class="back-cover__area-text">West Seattle &amp; Bothell Area</div>
+      </div>
+
+      <div class="qr-block">
+        <div id="qrcode"></div>
+        <div class="qr-label">
+          <strong>Scan for all our links</strong>
+          Website · Phone · Instagram<br/>& more
+        </div>
+      </div>
+
+      <div class="back-cover__free">
+        <p>Get started today —</p>
+        <strong>Free Quotes. No Pressure.</strong>
+      </div>
+    </div>
+
+    <!-- Front Cover (right when unfolded) -->
+    <div class="panel front-cover">
+      <img src="assets/logo-chrome.png" alt="Quartz RD Pro Wash" class="front-cover__logo" />
+      <p class="front-cover__service">Professional Pressure Washing</p>
+      <h1 class="front-cover__tagline">Shine.<br><em>Every time.</em></h1>
+      <p class="front-cover__area">West Seattle &nbsp;·&nbsp; Bothell Area</p>
+      <div class="front-cover__cta">GET A FREE QUOTE TODAY</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SHEET 2: INSIDE
+       ============================================ -->
+  <div class="sheet">
+    <div class="fold-guide"></div>
+
+    <!-- Inside Left — Before & After -->
+    <div class="panel inside-left">
+      <p class="inside-eyebrow">Results You Can See</p>
+      <h2 class="inside-title">Before <span>&amp; After</span></h2>
+      <p class="inside-sub">Commercial-grade pressure washing strips years of oil stains, tire marks, and built-up grime — leaving concrete looking freshly poured.</p>
+
+      <div class="before-after">
+        <div class="ba-box">
+          <div class="ba-label before">Before</div>
+          <div class="ba-photo">
+            <div class="ba-photo-icon">📷</div>
+            <div class="ba-photo-text">Add your<br/>before photo</div>
+          </div>
+        </div>
+        <div class="ba-box">
+          <div class="ba-label after">After</div>
+          <div class="ba-photo after-box">
+            <div class="ba-photo-icon">✨</div>
+            <div class="ba-photo-text">Add your<br/>after photo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="before-after before-after-2">
+        <div class="ba-box">
+          <div class="ba-label before">Before</div>
+          <div class="ba-photo">
+            <div class="ba-photo-icon">📷</div>
+            <div class="ba-photo-text">Add your<br/>before photo</div>
+          </div>
+        </div>
+        <div class="ba-box">
+          <div class="ba-label after">After</div>
+          <div class="ba-photo after-box">
+            <div class="ba-photo-icon">✨</div>
+            <div class="ba-photo-text">Add your<br/>after photo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inside-left__promise">
+        <p>Not happy? We'll make it right.</p>
+        <strong>Satisfaction Guaranteed</strong>
+      </div>
+    </div>
+
+    <!-- Inside Right — Services & Why Us -->
+    <div class="panel inside-right">
+
+      <div class="services-section">
+        <div class="section-header">
+          <p class="inside-eyebrow">What We Do</p>
+          <h2 class="inside-title" style="font-size:15pt;">Concrete Cleaning,<br><span>Done Right.</span></h2>
+        </div>
+        <div class="service-list">
+          <div class="service-item">
+            <div>
+              <div class="service-item__name">🏠&nbsp; Home Driveways</div>
+              <div class="service-item__desc">Oil stains, tire marks, and years of grime — gone in one visit.</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div>
+              <div class="service-item__name">🚶&nbsp; Sidewalks &amp; Walkways</div>
+              <div class="service-item__desc">Front walks and public-facing paths cleaned to impress.</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div>
+              <div class="service-item__name">🅿️&nbsp; Parking Lots</div>
+              <div class="service-item__desc">High-traffic commercial lots cleaned top to bottom.</div>
+            </div>
+          </div>
+          <div class="service-item">
+            <div>
+              <div class="service-item__name">🏡&nbsp; Concrete Patios &amp; Curbs</div>
+              <div class="service-item__desc">Outdoor spaces and curb aprons restored to like-new.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-section">
+        <div class="section-header">
+          <p class="inside-eyebrow">Why Choose Us</p>
+        </div>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-check">✓</div>
+            <div class="why-text">Commercial-grade equipment</div>
+          </div>
+          <div class="why-item">
+            <div class="why-check">✓</div>
+            <div class="why-text">Free quotes — no obligation</div>
+          </div>
+          <div class="why-item">
+            <div class="why-check">✓</div>
+            <div class="why-text">Local to West Seattle &amp; Bothell</div>
+          </div>
+          <div class="why-item">
+            <div class="why-check">✓</div>
+            <div class="why-text">Satisfaction guaranteed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-strip">
+        <p>Call or text for your free quote —</p>
+        <strong>(425) 686-0803</strong>
+        <small>Mon–Sat · 8am–6pm</small>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    new QRCode(document.getElementById("qrcode"), {
+      text: "https://quartz-road-website.vercel.app/links",
+      width: 96,
+      height: 96,
+      colorDark: "#0F172A",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
+</body>
+</html>

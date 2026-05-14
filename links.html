@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quartz RD Pro Wash — Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #08090E;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(56,189,248,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 90%, rgba(96,165,250,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      width: 180px;
+      filter: drop-shadow(0 0 16px rgba(56,189,248,0.35));
+      margin-bottom: 0.25rem;
+    }
+
+    .name {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: 0.04em;
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .link-btn:active {
+      transform: translateY(0);
+    }
+
+    .link-btn.primary {
+      background: linear-gradient(135deg, #0284C7, #38BDF8);
+      color: white;
+      border-color: transparent;
+    }
+
+    .link-btn.dark {
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    .link-btn.instagram {
+      background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
+      color: white;
+      border-color: transparent;
+    }
+
+    .link-icon {
+      font-size: 1.15rem;
+      width: 1.4rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .link-label {
+      flex: 1;
+    }
+
+    .link-sub {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      opacity: 0.7;
+      letter-spacing: 0.05em;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0.25rem 0;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="assets/logo-chrome.png" alt="Quartz RD Pro Wash" class="logo" />
+    <div class="name">Quartz RD Pro Wash</div>
+    <div class="tagline">Professional Pressure Washing</div>
+
+    <div class="links">
+
+      <!-- Website -->
+      <a href="https://quartz-road-website.vercel.app" class="link-btn primary">
+        <span class="link-icon">🌐</span>
+        <span class="link-label">
+          Our Website
+          <span class="link-sub">quartz-road-website.vercel.app</span>
+        </span>
+        <span>→</span>
+      </a>
+
+      <!-- Call/Text -->
+      <a href="tel:+14256860803" class="link-btn dark">
+        <span class="link-icon">📞</span>
+        <span class="link-label">
+          Call or Text Us
+          <span class="link-sub">(425) 686-0803</span>
+        </span>
+        <span>→</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/quartzrdpowerwashing" class="link-btn instagram">
+        <span class="link-icon">📸</span>
+        <span class="link-label">
+          Instagram
+          <span class="link-sub">@quartzrdpowerwashing</span>
+        </span>
+        <span>→</span>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:quartzrdpowerwashing@gmail.com" class="link-btn dark">
+        <span class="link-icon">✉️</span>
+        <span class="link-label">
+          Email Us
+          <span class="link-sub">quartzrdpowerwashing@gmail.com</span>
+        </span>
+        <span>→</span>
+      </a>
+
+      <!-- ── ADD NEW LINKS BELOW THIS LINE ── -->
+
+    </div>
+
+    <div class="footer">West Seattle · Bothell Area</div>
+  </div>
+</body>
+</html>
