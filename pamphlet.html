@@ -6,7 +6,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -566,7 +565,7 @@
       </div>
 
       <div class="qr-block">
-        <div id="qrcode"></div>
+        <img src="assets/qr-links.png" alt="Scan for links" />
         <div class="qr-label">
           <strong>Scan for all our links</strong>
           Website · Phone · Instagram<br/>& more
@@ -670,6 +669,12 @@
               <div class="service-item__desc">Outdoor spaces and curb aprons restored to like-new.</div>
             </div>
           </div>
+          <div class="service-item">
+            <div>
+              <div class="service-item__name">🗑️&nbsp; Trash Can Cleaning</div>
+              <div class="service-item__desc">Deep-cleaned inside and out — no more odors or buildup.</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -706,15 +711,5 @@
     </div>
   </div>
 
-  <script>
-    new QRCode(document.getElementById("qrcode"), {
-      text: "https://quartz-road-website.vercel.app/links",
-      width: 96,
-      height: 96,
-      colorDark: "#0F172A",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  </script>
 </body>
 </html>
