@@ -64,27 +64,26 @@
        PANEL 1: FRONT COVER (right side of sheet 1)
        ================================================ */
     .front-cover {
-      background: #08090E;
+      background: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 0.5in 0.4in;
       text-align: center;
+      border-left: 1px solid #E2E8F0;
     }
     .front-cover::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(56,189,248,0.1) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(96,165,250,0.06) 0%, transparent 60%);
+      top: 0; left: 0; right: 0;
+      height: 0.18in;
+      background: linear-gradient(90deg, #0284C7, #38BDF8, #A5F3FC);
     }
     .front-cover__logo {
       width: 3.8in;
       position: relative;
       z-index: 2;
-      filter: drop-shadow(0 0 20px rgba(56,189,248,0.3));
       margin-bottom: 0.25in;
     }
     .front-cover__service {
@@ -94,7 +93,7 @@
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: #94A3B8;
       margin-bottom: 0.15in;
     }
     .front-cover__tagline {
@@ -102,13 +101,13 @@
       z-index: 2;
       font-size: 20pt;
       font-weight: 900;
-      color: white;
+      color: #0F172A;
       line-height: 1.2;
       margin-bottom: 0.12in;
     }
     .front-cover__tagline em {
       font-style: italic;
-      background: linear-gradient(90deg, #38BDF8, #A5F3FC);
+      background: linear-gradient(90deg, #0284C7, #38BDF8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -117,7 +116,7 @@
       position: relative;
       z-index: 2;
       font-size: 8pt;
-      color: rgba(255,255,255,0.4);
+      color: #94A3B8;
       letter-spacing: 0.1em;
       margin-top: 0.1in;
     }
@@ -125,7 +124,7 @@
       position: relative;
       z-index: 2;
       margin-top: 0.25in;
-      background: linear-gradient(135deg, #38BDF8, #60A5FA);
+      background: linear-gradient(135deg, #0284C7, #38BDF8);
       color: white;
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
